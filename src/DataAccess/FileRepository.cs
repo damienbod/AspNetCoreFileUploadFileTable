@@ -5,12 +5,19 @@ using DataAccess.Model;
 
 namespace DataAccess
 {
-    public class FileRepository : IFileRepository, IDisposable
+    using Microsoft.Extensions.Logging;
+
+    public class FileRepository : IFileRepository
     {
-        private FileContext _context;
-        public FileRepository()
+
+        private readonly FileContext _context;
+
+        private readonly ILogger _logger;
+
+        public FileRepository(FileContext context, ILoggerFactory loggerFactory)
         {
-            _context = new FileContext();
+            _context = context;
+            _logger = loggerFactory.CreateLogger("FileRepository");
         }
 
         public IEnumerable<FileDescriptionShort> AddFileDescriptions(FileResult fileResult)
@@ -38,28 +45,19 @@ namespace DataAccess
 
         private IEnumerable<FileDescriptionShort> GetNewFiles(List<string> filenames)
         {
-            IEnumerable<FileDescription> x = _context.FileDescriptions.Where(r => filenames.Contains(r.FileName));            
-            return x.Select( t => new FileDescriptionShort { Name = t.Name, Id = t.Id, Description = t.Description });
+            IEnumerable<FileDescription> x = _context.FileDescriptions.Where(r => filenames.Contains(r.FileName));
+            return x.Select(t => new FileDescriptionShort { Name = t.Name, Id = t.Id, Description = t.Description });
         }
 
         public IEnumerable<FileDescriptionShort> GetAllFiles()
         {
             return _context.FileDescriptions.Select(
-                    t => new FileDescriptionShort {Name = t.Name, Id = t.Id, Description = t.Description});
+                    t => new FileDescriptionShort { Name = t.Name, Id = t.Id, Description = t.Description });
         }
 
         public FileDescription GetFileDescription(int id)
         {
             return _context.FileDescriptions.Single(t => t.Id == id);
-        }
-
-        public void Dispose()
-        {
-            if (_context != null)
-            {
-                _context.Dispose();
-                _context = null;
-            }
         }
     }
 }

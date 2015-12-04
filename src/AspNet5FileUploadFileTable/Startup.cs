@@ -35,7 +35,9 @@ namespace AspNet5FileUploadFileTable
                 .AddDbContext<FileContext>(options => options.UseSqlServer(connection));
 
             services.AddMvc();
+
             services.AddScoped<IFileRepository, FileRepository>();
+            services.AddScoped<ValidateMimeMultipartContentFilter>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

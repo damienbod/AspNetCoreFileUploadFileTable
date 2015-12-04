@@ -1,11 +1,9 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace DataAccess.Model
 {
     public class FileDescription
     {
-        [Key]
         public int Id { get; set; }
         public string FileName { get; set; }
         public string Description { get; set; }
