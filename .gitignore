@@ -1,2 +1,5 @@
 src/AspNet5FileUploadFileTable/node_modules
 .vs/AspNet5FileUploadFileTable/v14/.suo
+src/AspNet5FileUploadFileTable/project.lock.json
+src/DataAccess/DataAccess.xproj.user
+src/DataAccess/project.lock.json
