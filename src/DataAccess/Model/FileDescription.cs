@@ -10,6 +10,5 @@ namespace DataAccess.Model
         public DateTime CreatedTimestamp { get; set; }
         public DateTime UpdatedTimestamp { get; set; }
         public string ContentType { get; set; }
-        public string Name { get; set; }
     }
 }

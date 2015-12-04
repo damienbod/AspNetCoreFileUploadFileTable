@@ -29,7 +29,6 @@ namespace DataAccess
                 {
                     ContentType = fileResult.ContentTypes[i],
                     FileName = fileResult.FileNames[i],
-                    Name = fileResult.Names[i],
                     CreatedTimestamp = fileResult.CreatedTimestamp,
                     UpdatedTimestamp = fileResult.UpdatedTimestamp,
                     Description = fileResult.Description
@@ -46,13 +45,13 @@ namespace DataAccess
         private IEnumerable<FileDescriptionShort> GetNewFiles(List<string> filenames)
         {
             IEnumerable<FileDescription> x = _context.FileDescriptions.Where(r => filenames.Contains(r.FileName));
-            return x.Select(t => new FileDescriptionShort { Name = t.Name, Id = t.Id, Description = t.Description });
+            return x.Select(t => new FileDescriptionShort { Id = t.Id, Description = t.Description });
         }
 
         public IEnumerable<FileDescriptionShort> GetAllFiles()
         {
             return _context.FileDescriptions.Select(
-                    t => new FileDescriptionShort { Name = t.Name, Id = t.Id, Description = t.Description });
+                    t => new FileDescriptionShort { Name = t.FileName, Id = t.Id, Description = t.Description });
         }
 
         public FileDescription GetFileDescription(int id)

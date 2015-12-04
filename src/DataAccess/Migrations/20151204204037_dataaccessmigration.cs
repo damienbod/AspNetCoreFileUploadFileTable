@@ -19,7 +19,6 @@ namespace DataAccess.Migrations
                     CreatedTimestamp = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     FileName = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true),
                     UpdatedTimestamp = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>

@@ -8,7 +8,7 @@ using DataAccess;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(FileContext))]
-    [Migration("20151204103223_dataaccessmigration")]
+    [Migration("20151204204037_dataaccessmigration")]
     partial class dataaccessmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,8 +29,6 @@ namespace DataAccess.Migrations
                     b.Property<string>("Description");
 
                     b.Property<string>("FileName");
-
-                    b.Property<string>("Name");
 
                     b.Property<DateTime>("UpdatedTimestamp");
 

@@ -29,8 +29,6 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("FileName");
 
-                    b.Property<string>("Name");
-
                     b.Property<DateTime>("UpdatedTimestamp");
 
                     b.HasKey("Id");

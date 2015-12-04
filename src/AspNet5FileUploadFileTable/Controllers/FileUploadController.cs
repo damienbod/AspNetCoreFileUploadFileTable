@@ -19,56 +19,62 @@
     public class FileUploadController : Controller
     {
         private readonly IFileRepository _fileRepository;
-        private static readonly string ServerUploadFolder = "\\\\N275\\mssqlserver2014\\WebApiFileTable\\WebApiUploads_Dir"; //Path.GetTempPath();
+        private static readonly string ServerUploadFolder = "\\\\N275\\mssqlserver2014\\WebApiFileTable\\WebApiUploads_Dir";
 
         public FileUploadController(IFileRepository fileRepository)
         {
             _fileRepository = fileRepository;
         }
 
-        /// <summary>
-        /// IFormFile  has to be used
-        /// </summary>
-        /// <param name="files"></param>
-        /// <returns></returns>
         [Route("files")]
         [HttpPost]
-        [ServiceFilter(typeof(ValidateMimeMultipartContentFilter))]   
-        public async Task<IActionResult> UploadFiles(FileDescriptionShort files)
-        {         
-            //var streamProvider = new MultipartFormDataStreamProvider(ServerUploadFolder);
-            //await Request.Content.ReadAsMultipartAsync(streamProvider);
+        [ServiceFilter(typeof(ValidateMimeMultipartContentFilter))]
+        public async Task<IActionResult> UploadFiles(FileDescriptionShort fileDescriptionShort)
+        {
+            var names = new List<string>();
+            var contentTypes = new List<string>();
+            if (ModelState.IsValid)
+            {
+                // The next lines of code was taken from the following 2 blogs
+                // http://www.mikesdotnetting.com/article/288/asp-net-5-uploading-files-with-asp-net-mvc-6
+                // http://dotnetthoughts.net/file-upload-in-asp-net-5-and-mvc-6/
+                foreach (var file in fileDescriptionShort.File)
+                {
+                    if (file.Length > 0)
+                    {
+                        var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                        contentTypes.Add(file.ContentType);
+                        names.Add(fileName);
 
+                        await file.SaveAsAsync(Path.Combine(ServerUploadFolder, fileName));
+                    }
+                }
+            }
 
-            //var files = new FileResult
-            //{
-            //    FileNames = streamProvider.FileData.Select(entry => entry.LocalFileName.Replace(ServerUploadFolder + "\\", "")).ToList(),
-            //    Names = streamProvider.FileData.Select(entry => entry.Headers.ContentDisposition.FileName).ToList(),
-            //    ContentTypes = streamProvider.FileData.Select(entry => entry.Headers.ContentType.MediaType).ToList(),
-            //    Description = streamProvider.FormData["description"],
-            //    CreatedTimestamp = DateTime.UtcNow,
-            //    UpdatedTimestamp = DateTime.UtcNow,
-            //};
+            var files = new FileResult
+                            {
+                                FileNames = names,
+                                ContentTypes = contentTypes,
+                                Description = fileDescriptionShort.Description,
+                                CreatedTimestamp = DateTime.UtcNow,
+                                UpdatedTimestamp = DateTime.UtcNow,
+                            };
 
-            // tests code
-            return null; 
+            _fileRepository.AddFileDescriptions(files);
 
-            //return _fileRepository.AddFileDescriptions(files);
+            return RedirectToAction("ViewAllFiles", "FileClient");
         }
 
-        //[Route("download/{id}")]
-        //[HttpGet]
-        //public HttpResponseMessage Download(int id)
-        //{
-        //    var fileDescription = _fileRepository.GetFileDescription(id);
+        [Route("download/{id}")]
+        [HttpGet]
+        public FileStreamResult Download(int id)
+        {
+            var fileDescription = _fileRepository.GetFileDescription(id);
 
-        //    var path = ServerUploadFolder + "\\" + fileDescription.FileName;
-        //    var result = new HttpResponseMessage(HttpStatusCode.OK);
-        //    var stream = new FileStream(path, FileMode.Open);
-        //    result.Content = new StreamContent(stream);
-        //    result.Content.Headers.ContentType = new MediaTypeHeaderValue(fileDescription.ContentType);
-        //    return result;
-        //}
+            var path = ServerUploadFolder + "\\" + fileDescription.FileName;
+            var stream = new FileStream(path, FileMode.Open);
+            return  File(stream, fileDescription.ContentType);
+        }
 
         [Route("all")]
         [HttpGet]
