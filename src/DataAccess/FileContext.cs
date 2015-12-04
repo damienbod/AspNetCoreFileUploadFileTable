@@ -3,6 +3,8 @@ using DataAccess.Model;
 
 namespace DataAccess
 {
+    using Microsoft.Extensions.Configuration;
+
     public class FileContext : DbContext
     {
         public DbSet<FileDescription> FileDescriptions { get; set; }
@@ -15,9 +17,14 @@ namespace DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // TODO move this to a config
-            var SQLConnectionString =  "Data Source=N275\\MSSQLSERVER2014;Initial Catalog=WebApiFileTable;Integrated Security=True;";
-            optionsBuilder.UseSqlServer(SQLConnectionString);
+            var builder = new ConfigurationBuilder()
+           .AddJsonFile("config.json")
+           .AddEnvironmentVariables();
+            var configuration = builder.Build();
+
+            var sqlConnectionString = configuration["ApplicationConfiguration:SQLConnectionString"];
+
+            optionsBuilder.UseSqlServer(sqlConnectionString);
 
         }
     }
