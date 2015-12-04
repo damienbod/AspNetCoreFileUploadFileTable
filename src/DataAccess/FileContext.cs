@@ -12,5 +12,12 @@ namespace DataAccess
             builder.Entity<FileDescription>().HasKey(m => m.Id);
             base.OnModelCreating(builder);
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var SQLConnectionString =  "Data Source=N275\\MSSQLSERVER2014;Initial Catalog=WebApiFileTable;Integrated Security=True;";
+            optionsBuilder.UseSqlServer(SQLConnectionString);
+
+        }
     }
 }
