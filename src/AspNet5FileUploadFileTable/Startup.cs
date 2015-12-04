@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 
 namespace AspNet5FileUploadFileTable
 {
+    using AspNet5FileUploadFileTable.Controllers;
+
     using DataAccess;
 
     using Microsoft.Data.Entity;
@@ -28,7 +30,9 @@ namespace AspNet5FileUploadFileTable
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = Configuration["Production:SQLConnectionString"];
+            services.Configure<ApplicationConfiguration>( Configuration.GetSection("ApplicationConfiguration"));
+
+            var connection = Configuration["ApplicationConfiguration:SQLConnectionString"];
 
             services.AddEntityFramework()
                 .AddSqlServer()
