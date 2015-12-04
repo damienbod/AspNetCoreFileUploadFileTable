@@ -15,6 +15,7 @@ namespace DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            // TODO move this to a config
             var SQLConnectionString =  "Data Source=N275\\MSSQLSERVER2014;Initial Catalog=WebApiFileTable;Integrated Security=True;";
             optionsBuilder.UseSqlServer(SQLConnectionString);
 
