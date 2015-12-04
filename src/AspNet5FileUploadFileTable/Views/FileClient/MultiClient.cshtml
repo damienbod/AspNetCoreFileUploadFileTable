@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Test</title>
+    </head>
+    <body>
+        <form enctype="multipart/form-data" method="post" action="http://localhost:20828/api/test/files" id="ajaxUploadForm" novalidate="novalidate">
+
+            <fieldset>
+                <legend>Upload Form</legend>
+                <ol>
+                    <li>
+                        <label>Description </label>
+                        <input type="text" style="width:317px" name="description" id="description">
+                    </li>
+                    <li>
+                        <label>upload </label>
+                        <input type="file" id="fileInput" name="fileInput" multiple>
+                    </li>
+                    <li>
+                        <input type="submit" value="Upload" id="ajaxUploadButton" class="btn">
+                    </li>
+                </ol>
+            </fieldset>
+        </form>
+    </body>
+</html>

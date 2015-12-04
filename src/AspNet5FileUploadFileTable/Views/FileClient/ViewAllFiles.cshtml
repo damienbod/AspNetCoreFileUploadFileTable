@@ -1,0 +1,21 @@
+﻿@model DataAccess.Model.AllUploadedFiles
+
+<fieldset class="form">
+    <legend>My Docs</legend>
+    <table width="100%">
+        <tr>
+            <th>Filename</th>
+            <th>Description</th>
+
+        </tr>
+        @foreach (var doc in Model.FileShortDescriptions)
+        {
+            <tr>
+                <td title="@doc.Name"><a href="http://localhost:20828/api/test/download/@doc.Id">@doc.Name</a></td>
+                <td><a href="http://localhost:20828/api/test/download/@doc.Id">@doc.Description</a></td>
+            </tr>
+        }
+    </table>
+
+</fieldset>
+

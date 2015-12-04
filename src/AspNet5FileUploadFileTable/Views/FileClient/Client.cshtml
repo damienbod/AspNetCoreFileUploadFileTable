@@ -1,0 +1,29 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>WebApiTest</title>
+</head>
+    <body>
+        <div>
+        <form enctype="multipart/form-data" method="post" action="http://localhost:20828/api/test/files" id="ajaxUploadForm" novalidate="novalidate">
+
+            <fieldset>
+                <legend>Upload Form</legend>
+                <ol>
+                    <li>
+                        <label>Description </label>
+                        <input type="text" style="width:317px" name="description" id="description">
+                    </li>
+                    <li>
+                        <label>Upload </label>
+                        <input type="file" style="width:317px" name="file" id="fileInput">                   
+                    </li>
+                    <li>
+                        <input type="submit" value="Upload" id="ajaxUploadButton" class="btn">
+                    </li>
+                </ol>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>
