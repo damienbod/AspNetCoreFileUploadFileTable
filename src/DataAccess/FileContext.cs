@@ -1,10 +1,9 @@
 ﻿using Microsoft.Data.Entity;
 using DataAccess.Model;
+using Microsoft.Extensions.Configuration;
 
 namespace DataAccess
 {
-    using Microsoft.Extensions.Configuration;
-
     public class FileContext : DbContext
     {
         public DbSet<FileDescription> FileDescriptions { get; set; }
@@ -25,7 +24,6 @@ namespace DataAccess
             var sqlConnectionString = configuration["ApplicationConfiguration:SQLConnectionString"];
 
             optionsBuilder.UseSqlServer(sqlConnectionString);
-
         }
     }
 }

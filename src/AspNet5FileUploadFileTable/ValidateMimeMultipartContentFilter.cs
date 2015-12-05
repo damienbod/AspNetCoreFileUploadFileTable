@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Net;
+
+using Microsoft.AspNet.Mvc.Filters;
+using Microsoft.Extensions.Logging;
 
 namespace AspNet5FileUploadFileTable
 {
-    using System.Net;
-
-    using Microsoft.AspNet.Mvc.Filters;
-    using Microsoft.Extensions.Logging;
-
     public class ValidateMimeMultipartContentFilter : ActionFilterAttribute
     {
         private readonly ILogger _logger;
