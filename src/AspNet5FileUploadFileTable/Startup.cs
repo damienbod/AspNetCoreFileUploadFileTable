@@ -17,7 +17,7 @@ namespace AspNet5FileUploadFileTable
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile("../config.json")
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }

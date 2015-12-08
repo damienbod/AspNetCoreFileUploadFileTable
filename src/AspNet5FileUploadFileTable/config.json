@@ -1,5 +1,0 @@
-﻿{
-    "ApplicationConfiguration": {
-        "SQLConnectionString": "Data Source=N275\\MSSQLSERVER2014;Initial Catalog=WebApiFileTable;Integrated Security=True;"
-    }
-}
