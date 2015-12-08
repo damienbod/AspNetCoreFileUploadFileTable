@@ -6,6 +6,8 @@ using Microsoft.Extensions.Logging;
 
 namespace AspNet5FileUploadFileTable
 {
+    using Microsoft.AspNet.Mvc;
+
     public class ValidateMimeMultipartContentFilter : ActionFilterAttribute
     {
         private readonly ILogger _logger;
@@ -21,8 +23,8 @@ namespace AspNet5FileUploadFileTable
 
             if (!IsMultipartContentType(context.HttpContext.Request.ContentType))
             {
-                // TODO improve this with 415 response, instead of 500.
-                throw new Exception("UnsupportedMediaType:" + HttpStatusCode.UnsupportedMediaType.ToString());
+                context.Result = new HttpStatusCodeResult(415);
+                return;
             }
 
             base.OnActionExecuting(context);
