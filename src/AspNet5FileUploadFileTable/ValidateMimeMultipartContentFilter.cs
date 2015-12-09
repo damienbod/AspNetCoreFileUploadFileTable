@@ -19,8 +19,6 @@ namespace AspNet5FileUploadFileTable
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            _logger.LogWarning("ClassFilter OnActionExecuting");
-
             if (!IsMultipartContentType(context.HttpContext.Request.ContentType))
             {
                 context.Result = new HttpStatusCodeResult(415);
