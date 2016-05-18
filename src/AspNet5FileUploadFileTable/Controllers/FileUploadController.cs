@@ -1,20 +1,17 @@
-﻿namespace AspNet5FileUploadFileTable.Controllers
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
+using DataAccess;
+using DataAccess.Model;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Microsoft.Net.Http.Headers;
+    
+using FileResult = DataAccess.Model.FileResult;
+
+namespace AspNet5FileUploadFileTable.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Threading.Tasks;
-
-    using DataAccess;
-    using DataAccess.Model;
-
-    using Microsoft.AspNet.Http;
-    using Microsoft.AspNet.Mvc;
-    using Microsoft.Extensions.OptionsModel;
-    using Microsoft.Net.Http.Headers;
-
-    using FileResult = DataAccess.Model.FileResult;
-
     [Route("api/test")]
     public class FileUploadController : Controller
     {
@@ -46,6 +43,7 @@
                         contentTypes.Add(file.ContentType);
                         names.Add(fileName);
 
+                        // Extension method update RC2 has removed this 
                         await file.SaveAsAsync(Path.Combine(_optionsApplicationConfiguration.Value.ServerUploadFolder, fileName));
                     }
                 }

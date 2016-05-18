@@ -1,16 +1,16 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Microsoft.Data.Entity.Migrations;
-using Microsoft.Data.Entity.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace DataAccess.Migrations
+namespace AspNet5FileUploadFileTable.Migrations
 {
-    public partial class dataaccessmigration : Migration
+    public partial class SQLScripts : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "FileDescription",
+                name: "FileDescriptions",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -23,13 +23,14 @@ namespace DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FileDescription", x => x.Id);
+                    table.PrimaryKey("PK_FileDescriptions", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable("FileDescription");
+            migrationBuilder.DropTable(
+                name: "FileDescriptions");
         }
     }
 }

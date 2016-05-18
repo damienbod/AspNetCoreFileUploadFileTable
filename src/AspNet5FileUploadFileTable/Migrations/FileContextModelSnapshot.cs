@@ -1,20 +1,19 @@
-using System;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Infrastructure;
-using Microsoft.Data.Entity.Metadata;
-using Microsoft.Data.Entity.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using DataAccess;
 
-namespace DataAccess.Migrations
+namespace AspNet5FileUploadFileTable.Migrations
 {
     [DbContext(typeof(FileContext))]
-    [Migration("20151204204037_dataaccessmigration")]
-    partial class dataaccessmigration
+    partial class FileContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
+                .HasAnnotation("ProductVersion", "1.0.0-rc2-20896")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("DataAccess.Model.FileDescription", b =>
@@ -33,6 +32,8 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("UpdatedTimestamp");
 
                     b.HasKey("Id");
+
+                    b.ToTable("FileDescriptions");
                 });
         }
     }

@@ -1,24 +1,23 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using AspNet5FileUploadFileTable.Controllers;
+using DataAccess;
+using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 namespace AspNet5FileUploadFileTable
 {
-    using AspNet5FileUploadFileTable.Controllers;
-
-    using DataAccess;
-
-    using Microsoft.Data.Entity;
-
     public class Startup
     {
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
-                .AddJsonFile("../config.json")
-                .AddEnvironmentVariables();
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("config.json", optional: true, reloadOnChange: true);
+
             Configuration = builder.Build();
         }
 
@@ -28,12 +27,15 @@ namespace AspNet5FileUploadFileTable
         {
             services.Configure<ApplicationConfiguration>( Configuration.GetSection("ApplicationConfiguration"));
 
-            var connection = Configuration["ApplicationConfiguration:SQLConnectionString"];
+            var sqlConnectionString = Configuration["ApplicationConfiguration:SQLConnectionString"];
 
-            services.AddEntityFramework()
-                .AddSqlServer()
-                .AddDbContext<FileContext>(options => options.UseSqlServer(connection));
-
+            services.AddDbContext<FileContext>(options =>
+                options.UseSqlServer(
+                    sqlConnectionString,
+                    b => b.MigrationsAssembly("AspNet5FileUploadFileTable")
+                )
+            );
+            
             services.AddMvc();
 
             services.AddScoped<IFileRepository, FileRepository>();
@@ -42,30 +44,24 @@ namespace AspNet5FileUploadFileTable
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddConsole();
             loggerFactory.AddDebug();
-
-            if (env.IsDevelopment())
-            {
-                app.UseBrowserLink();
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
-
-            app.UseIISPlatformHandler();
 
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvc();
         }
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
+
+        public static void Main(string[] args)
+        {
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
+                .UseStartup<Startup>()
+                .Build();
+
+            host.Run();
+        }
     }
 }

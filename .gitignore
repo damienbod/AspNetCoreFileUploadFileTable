@@ -3,3 +3,7 @@ src/AspNet5FileUploadFileTable/node_modules
 src/AspNet5FileUploadFileTable/project.lock.json
 src/DataAccess/DataAccess.xproj.user
 src/DataAccess/project.lock.json
+src/AspNet5FileUploadFileTable/bin
+src/AspNet5FileUploadFileTable/obj
+src/DataAccess/obj
+src/DataAccess/bin
