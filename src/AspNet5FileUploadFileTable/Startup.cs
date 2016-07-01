@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AspNet5FileUploadFileTable.Controllers;
+using DataAccess;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using AspNet5FileUploadFileTable.Controllers;
-using DataAccess;
-using Microsoft.EntityFrameworkCore;
-using System.IO;
 
 namespace AspNet5FileUploadFileTable
 {
@@ -21,11 +24,12 @@ namespace AspNet5FileUploadFileTable
             Configuration = builder.Build();
         }
 
-        public IConfigurationRoot Configuration { get; set; }
+        public IConfigurationRoot Configuration { get; }
 
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<ApplicationConfiguration>( Configuration.GetSection("ApplicationConfiguration"));
+            services.Configure<ApplicationConfiguration>(Configuration.GetSection("ApplicationConfiguration"));
 
             var sqlConnectionString = Configuration["ApplicationConfiguration:SQLConnectionString"];
 
@@ -35,33 +39,37 @@ namespace AspNet5FileUploadFileTable
                     b => b.MigrationsAssembly("AspNet5FileUploadFileTable")
                 )
             );
-            
+
             services.AddMvc();
 
             services.AddScoped<IFileRepository, FileRepository>();
             services.AddScoped<ValidateMimeMultipartContentFilter>();
         }
 
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole();
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
 
             app.UseStaticFiles();
 
-            app.UseMvc();
-        }
-
-        public static void Main(string[] args)
-        {
-            var host = new WebHostBuilder()
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .Build();
-
-            host.Run();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=FileClient}/{action=ViewAllFiles}/{id?}");
+            });
         }
     }
 }
