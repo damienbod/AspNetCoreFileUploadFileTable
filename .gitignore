@@ -7,3 +7,4 @@ src/AspNet5FileUploadFileTable/bin
 src/AspNet5FileUploadFileTable/obj
 src/DataAccess/obj
 src/DataAccess/bin
+.vs/restore.dg
