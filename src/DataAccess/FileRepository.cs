@@ -25,10 +25,15 @@ namespace DataAccess
             List<string> filenames = new List<string>();
             for (int i = 0; i < fileResult.FileNames.Count(); i++)
             {
+
+
+                int index = fileResult.FileNames[i].LastIndexOf("\\");
+                var shortName = fileResult.FileNames[i].Substring(index + 1);
+
                 var fileDescription = new FileDescription
                 {
                     ContentType = fileResult.ContentTypes[i],
-                    FileName = fileResult.FileNames[i],
+                    FileName = shortName,
                     CreatedTimestamp = fileResult.CreatedTimestamp,
                     UpdatedTimestamp = fileResult.UpdatedTimestamp,
                     Description = fileResult.Description
