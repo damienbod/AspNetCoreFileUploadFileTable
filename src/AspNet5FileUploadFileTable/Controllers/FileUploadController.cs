@@ -41,6 +41,9 @@ namespace AspNet5FileUploadFileTable.Controllers
                     {
                         var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                         contentTypes.Add(file.ContentType);
+
+                        
+
                         names.Add(fileName);
 
                         // Extension method update RC2 has removed this 
