@@ -8,13 +8,13 @@ using DataAccess;
 namespace AspNet5FileUploadFileTable.Migrations
 {
     [DbContext(typeof(FileContext))]
-    [Migration("20160518035928_SQLScripts")]
-    partial class SQLScripts
+    [Migration("20161221055553_FileContentModel")]
+    partial class FileContentModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.0.0-rc2-20896")
+                .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("DataAccess.Model.FileDescription", b =>

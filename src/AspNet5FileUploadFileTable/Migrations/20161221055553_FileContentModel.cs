@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace AspNet5FileUploadFileTable.Migrations
 {
-    public partial class SQLScripts : Migration
+    public partial class FileContentModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
