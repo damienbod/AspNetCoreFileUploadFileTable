@@ -1,0 +1,29 @@
+﻿@model DataAccess.Model.AllUploadedFiles
+
+
+
+
+<fieldset>
+    <legend style="padding-top:10px; padding-bottom: 10px;">Uploaded Files</legend>
+
+    <div class="col-xs-12" style="padding: 10px;">
+        <div class="col-xs-4"><b>Filename</b></div>
+        <div class="col-xs-7"><b>Description</b></div>
+    </div>
+
+    <hr/>
+
+    @foreach (var doc in Model.FileShortDescriptions)
+    {
+        <div class="col-xs-12" style="padding: 10px;">
+            <div class="col-xs-4">
+                <a href="http://localhost:5000/api/test/download/@doc.Id">@doc.Name</a>
+            </div>
+            <span class="col-xs-5" name="Description" id="Description" >  @doc.Description</span>
+
+        </div>
+    }
+
+</fieldset>
+
+

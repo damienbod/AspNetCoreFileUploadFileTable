@@ -9,3 +9,10 @@ src/DataAccess/obj
 src/DataAccess/bin
 .vs/restore.dg
 src/DataAccess/project.lock.json
+src/AspNetCoreFileUploadFileTable/obj
+src/AspNet5FileUploadFileTable/wwwroot
+src/AspNetCoreFileUploadFileTable/bin
+src/AspNetCoreFileUploadFileTable/wwwroot
+.vs/AspNetCoreFileUploadFileTable/v15/.suo
+.vs
+src/AspNetCoreFileUploadFileTable/AspNetCoreFileUploadFileTable.csproj.user
