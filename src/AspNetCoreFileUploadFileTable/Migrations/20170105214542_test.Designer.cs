@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using DataAccess;
 
-namespace AspNet5FileUploadFileTable.Migrations
+namespace AspNetCoreFileUploadFileTable.Migrations
 {
     [DbContext(typeof(FileContext))]
-    [Migration("20161221055553_FileContentModel")]
-    partial class FileContentModel
+    [Migration("20170105214542_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

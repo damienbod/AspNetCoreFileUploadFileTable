@@ -36,7 +36,7 @@ namespace AspNet5FileUploadFileTable
             services.AddDbContext<FileContext>(options =>
                 options.UseSqlServer(
                     sqlConnectionString,
-                    b => b.MigrationsAssembly("AspNet5FileUploadFileTable")
+                    b => b.MigrationsAssembly("AspNetCoreFileUploadFileTable")
                 )
             );
 

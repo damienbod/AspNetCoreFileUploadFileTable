@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace AspNet5FileUploadFileTable.Migrations
+namespace AspNetCoreFileUploadFileTable.Migrations
 {
-    public partial class FileContentModel : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

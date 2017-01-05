@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using DataAccess;
 
-namespace AspNet5FileUploadFileTable.Migrations
+namespace AspNetCoreFileUploadFileTable.Migrations
 {
     [DbContext(typeof(FileContext))]
     partial class FileContextModelSnapshot : ModelSnapshot
