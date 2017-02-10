@@ -1,8 +1,6 @@
 # ASP.NET Core 1.1 MVC file upload / download with MS SQL Server FileTable
 
-2017.02.03 Updated to VS2017 RC3
-
-2017.01.05 Updated to VS2017
+2017.02.10 Updated to VS2017 
 
 For the VS2015 version, use the tagged version
 
