@@ -39,7 +39,7 @@ namespace AspNet5FileUploadFileTable.Controllers
                 {
                     if (file.Length > 0)
                     {
-                        var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                        var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.ToString().Trim('"');
                         contentTypes.Add(file.ContentType);
 
                         names.Add(fileName);
