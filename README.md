@@ -1,6 +1,9 @@
 # ASP.NET Core 2.0 MVC file upload / download with MS SQL Server FileTable
 
-2017-08-21 Updated to ASP.NET Core 2.0
+
+2017-03-23 Updated to ASP.NET Core 2.0.6
+
+2017-08-21 Updated to ASP.NET Core 2.0.0
 
 2017-02-10 Updated to VS2017 
 
