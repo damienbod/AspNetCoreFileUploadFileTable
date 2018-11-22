@@ -3,41 +3,46 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AspNet5FileUploadFileTable</title>
+    <title>@ViewData["Title"] - AspNet Core File Upload with FileTable</title>
 
     <link rel="stylesheet" href="~/css/vendor.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-controller="FileClient" asp-action="ViewAllFiles" class="navbar-brand">ASP.NET Core FileUpload FileTable</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-controller="FileClient" asp-action="ViewAllFiles">ViewAllFiles</a></li>
-                    <li><a asp-controller="FileClient" asp-action="Client">Upload File</a></li>
-                    <li><a asp-controller="FileClient" asp-action="MultiClient">Upload Multiple Files</a></li>
-                </ul>
-            </div>
+    <nav class="bg-dark mb-4 navbar navbar-dark navbar-expand-md">
+        <a asp-controller="FileClient" asp-action="ViewAllFiles" class="navbar-brand">
+            <em>ASP.NET Core FileUpload FileTable</em>
+        </a>
+        <button aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#topNavbarCollapse" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="topNavbarCollapse">
+            <ul class="mr-auto navbar-nav">
+
+                <li class="nav-item">
+                    <a asp-controller="FileClient" asp-action="ViewAllFiles" class="nav-link">ViewAllFiles</a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-controller="FileClient" asp-action="Client" class="nav-link">Upload File</a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-controller="FileClient" asp-action="MultiClient" class="nav-link">Upload Multiple Files</a>
+                </li>
+            </ul>
         </div>
-    </div>
+    </nav>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2015 - AspNet5FileUploadFileTable</p>
+            <p>&copy; 2018 - ASP.NET Core File Upload FileTable</p>
         </footer>
     </div>
 
-        <script src="~/js/vendor.min.js" asp-append-version="true"></script>
+    <script src="~/js/vendor.min.js" asp-append-version="true"></script>
     <script src="~/js/site.min.js" asp-append-version="true"></script>
     @RenderSection("scripts", required: false)
 </body>
