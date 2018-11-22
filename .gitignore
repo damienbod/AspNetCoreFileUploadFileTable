@@ -16,3 +16,4 @@ src/AspNetCoreFileUploadFileTable/wwwroot
 .vs/AspNetCoreFileUploadFileTable/v15/.suo
 .vs
 src/AspNetCoreFileUploadFileTable/AspNetCoreFileUploadFileTable.csproj.user
+/src/AspNetCoreFileUploadFileTable/node_modules/
