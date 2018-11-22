@@ -1,6 +1,0 @@
-﻿{
-    "ApplicationConfiguration": {
-        "SQLConnectionString": "Data Source=N051\\MSSQLSERVER2014;Initial Catalog=WebApiFileTable;Integrated Security=True;",
-        "ServerUploadFolder": "\\\\N051\\mssqlserver2014\\WebApiFileTable\\WebApiUploads_Dir"
-    }
-}

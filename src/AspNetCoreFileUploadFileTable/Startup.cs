@@ -16,23 +16,28 @@ namespace AspNet5FileUploadFileTable
 {
     public class Startup
     {
+        private readonly IHostingEnvironment _environment;
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("config.json", optional: true, reloadOnChange: true);
+                  .SetBasePath(env.ContentRootPath)
+                  .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                  .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
+            _environment = env;
+
+            builder.AddEnvironmentVariables();
             Configuration = builder.Build();
         }
 
         public IConfigurationRoot Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<ApplicationConfiguration>(Configuration.GetSection("ApplicationConfiguration"));
 
-            var sqlConnectionString = Configuration["ApplicationConfiguration:SQLConnectionString"];
+            var sqlConnectionString = Configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<FileContext>(options =>
                 options.UseSqlServer(
