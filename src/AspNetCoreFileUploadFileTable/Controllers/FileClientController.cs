@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using DataAccess;
 using DataAccess.Model;
 
-namespace AspNet5FileUploadFileTable.Controllers
+namespace AspNetCoreFileUploadFileTable.Controllers
 {
     public class FileClientController : Controller
     {

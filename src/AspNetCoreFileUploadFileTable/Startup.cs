@@ -1,4 +1,4 @@
-﻿using AspNet5FileUploadFileTable.Controllers;
+﻿using AspNetCoreFileUploadFileTable.Controllers;
 using DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AspNet5FileUploadFileTable
+namespace AspNetCoreFileUploadFileTable
 {
     public class Startup
     {

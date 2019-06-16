@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace AspNet5FileUploadFileTable
+namespace AspNetCoreFileUploadFileTable
 {
     public static class FormFileExtensions
     {

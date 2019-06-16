@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 
-namespace AspNet5FileUploadFileTable
+namespace AspNetCoreFileUploadFileTable
 {
 
     public class ValidateMimeMultipartContentFilter : ActionFilterAttribute

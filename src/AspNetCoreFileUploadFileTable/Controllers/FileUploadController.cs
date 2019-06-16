@@ -10,7 +10,7 @@ using Microsoft.Net.Http.Headers;
     
 using FileResult = DataAccess.Model.FileResult;
 
-namespace AspNet5FileUploadFileTable.Controllers
+namespace AspNetCoreFileUploadFileTable.Controllers
 {
     [Route("api/test")]
     public class FileUploadController : Controller
