@@ -1,5 +1,4 @@
-﻿using AspNetCoreFileUploadFileTable.Controllers;
-using DataAccess;
+﻿using DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;

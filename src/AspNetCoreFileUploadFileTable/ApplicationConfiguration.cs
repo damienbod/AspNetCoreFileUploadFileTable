@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreFileUploadFileTable.Controllers
+﻿namespace AspNetCoreFileUploadFileTable
 {
     public class ApplicationConfiguration
     {
