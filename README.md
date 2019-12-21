@@ -1,8 +1,10 @@
-# ASP.NET Core 3.0 MVC file upload / download with MS SQL Server FileTable
+# ASP.NET Core 3.1 MVC file upload / download with MS SQL Server FileTable
 
 https://damienbod.com/2015/12/05/asp-net-5-mvc-6-file-upload-with-ms-sql-server-filetable/
 
 ## History 
+
+2019-12-21 Updated to .NET Core 3.1
 
 2019-10-05 Updated to .NET Core 3.0
 
