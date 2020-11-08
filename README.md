@@ -4,6 +4,8 @@ https://damienbod.com/2015/12/05/asp-net-5-mvc-6-file-upload-with-ms-sql-server-
 
 ## History 
 
+2020-11-08 Updated Nuget, npm packages
+
 2020-01-10 code clean up
 
 2019-12-21 Updated to .NET Core 3.1
