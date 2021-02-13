@@ -7,7 +7,7 @@ using DataAccess.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
-    
+
 using FileResult = DataAccess.Model.FileResult;
 
 namespace AspNetCoreFileUploadFileTable.Controllers
@@ -51,13 +51,13 @@ namespace AspNetCoreFileUploadFileTable.Controllers
             }
 
             var files = new FileResult
-                            {
-                                FileNames = names,
-                                ContentTypes = contentTypes,
-                                Description = fileDescriptionShort.Description,
-                                CreatedTimestamp = DateTime.UtcNow,
-                                UpdatedTimestamp = DateTime.UtcNow,
-                            };
+            {
+                FileNames = names,
+                ContentTypes = contentTypes,
+                Description = fileDescriptionShort.Description,
+                CreatedTimestamp = DateTime.UtcNow,
+                UpdatedTimestamp = DateTime.UtcNow,
+            };
 
             _fileRepository.AddFileDescriptions(files);
 
@@ -72,7 +72,7 @@ namespace AspNetCoreFileUploadFileTable.Controllers
 
             var path = _optionsApplicationConfiguration.Value.ServerUploadFolder + "\\" + fileDescription.FileName;
             var stream = new FileStream(path, FileMode.Open);
-            return  File(stream, fileDescription.ContentType);
+            return File(stream, fileDescription.ContentType);
         }
     }
 }

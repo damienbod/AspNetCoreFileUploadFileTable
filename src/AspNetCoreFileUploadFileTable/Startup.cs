@@ -34,8 +34,7 @@ namespace AspNetCoreFileUploadFileTable
                 )
             );
 
-            services.AddControllersWithViews()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddControllersWithViews();
 
             services.AddScoped<IFileRepository, FileRepository>();
             services.AddScoped<ValidateMimeMultipartContentFilter>();

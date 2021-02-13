@@ -43,7 +43,7 @@ namespace AspNetCoreFileUploadFileTable.Controllers
         /// </summary>
         public ActionResult ViewAllFiles()
         {
-            var model = new AllUploadedFiles {FileShortDescriptions = _fileRepository.GetAllFiles().ToList()};
+            var model = new AllUploadedFiles { FileShortDescriptions = _fileRepository.GetAllFiles().ToList() };
             return View(model);
         }
     }

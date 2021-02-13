@@ -4,7 +4,7 @@ https://damienbod.com/2015/12/05/asp-net-5-mvc-6-file-upload-with-ms-sql-server-
 
 ## History 
 
-2021-02-13 Updatenuget packages
+2021-02-13 Update Nuget packages
 
 2020-12-05 Update to .NET 5
 
